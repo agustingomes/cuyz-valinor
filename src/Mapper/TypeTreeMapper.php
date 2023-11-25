@@ -12,7 +12,7 @@ use CuyZ\Valinor\Type\Parser\Exception\InvalidType;
 use CuyZ\Valinor\Type\Parser\TypeParser;
 
 /** @internal */
-final class TypeTreeMapper implements TreeMapper
+final class TypeTreeMapper implements TreeMapper, TreeReverseMapper
 {
     public function __construct(
         private TypeParser $typeParser,
@@ -42,5 +42,16 @@ final class TypeTreeMapper implements TreeMapper
         $shell = Shell::root($type, $source);
 
         return $this->nodeBuilder->build($shell);
+    }
+
+    /**
+     * This is likely not the best way to do this,
+     * but I think is a good placeholder to start with.
+     *
+     * @return array<array-key, mixed>
+     */
+    public function reverseMap(object $objectToSerialize): array
+    {
+        throw new \Exception('To Implement');
     }
 }
